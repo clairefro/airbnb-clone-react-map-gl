@@ -1,0 +1,25 @@
+.flat {
+  width: 350px;
+  flex-basis: calc(50% - 20px);
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.flat:hover {
+  opacity: 0.9;
+}
+
+.flat-picture {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.flat-title {
+  font-weight: bold;
+  padding: 16px;
+}
