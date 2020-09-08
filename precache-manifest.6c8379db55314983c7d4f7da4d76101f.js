@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f378b9538bcbddb67791484332376b15",
+    "revision": "ed1d17d9d0ca9ae5c0323820d5b4907e",
     "url": "/airbnb-clone-react-map-gl/index.html"
   },
   {
-    "revision": "456035c8047da4999897",
+    "revision": "c123d8dfdb253bb1c4eb",
     "url": "/airbnb-clone-react-map-gl/static/css/main.0cb7da71.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/airbnb-clone-react-map-gl/static/js/2.feda4fdb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "456035c8047da4999897",
-    "url": "/airbnb-clone-react-map-gl/static/js/main.6d294cd1.chunk.js"
+    "revision": "c123d8dfdb253bb1c4eb",
+    "url": "/airbnb-clone-react-map-gl/static/js/main.79775845.chunk.js"
   },
   {
     "revision": "55738748b7048eb5b289",
