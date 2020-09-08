@@ -1,14 +1,12 @@
 import React from "react";
 import "./App.css";
-import ReactMapboxGl, { Marker } from "react-mapbox-gl";
+import MapGL, { Marker } from "react-map-gl";
 
 import Flat from "./components/Flat";
 import PriceMarker from "./components/PriceMarker";
 
-const Map = ReactMapboxGl({
-  accessToken:
-    "pk.eyJ1IjoiY2xhaXJlZnJvZnJvZnJvIiwiYSI6ImNrZTlhZXFhajAxd3IzMW1qdWxmNmJsbXIifQ.lbPzivrmR4KpokhRw3_10A",
-});
+const MAPBOX_TOKEN =
+  "pk.eyJ1IjoiY2xhaXJlZnJvZnJvZnJvIiwiYSI6ImNrZTlhZXFhajAxd3IzMW1qdWxmNmJsbXIifQ.lbPzivrmR4KpokhRw3_10A";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,8 +15,14 @@ class App extends React.Component {
       allFlats: [],
       flats: [],
       selectedFlat: null,
-      center: [-73.6103642, 45.4972159], // Montreal lng, lat
       search: "",
+      viewport: {
+        latitude: 45.4972159, // Montreal
+        longitude: -73.6103642, // Montreal
+        zoom: 12,
+        pitch: 0,
+        bearing: 0,
+      },
     };
   }
 
@@ -31,7 +35,10 @@ class App extends React.Component {
   }
 
   selectFlat = (flat) => {
-    this.setState({ selectedFlat: flat, center: [flat.lng, flat.lat] });
+    this.setState((old) => ({
+      selectedFlat: flat,
+      viewport: { ...old.viewport, latitude: flat.lat, longitude: flat.lng },
+    }));
   };
 
   handleSearch = (event) => {
@@ -61,28 +68,37 @@ class App extends React.Component {
           </div>
         </div>
         <div className="map">
-          <Map
-            style="mapbox://styles/mapbox/streets-v9"
-            containerStyle={{
-              height: "100%",
-              width: "100%",
-            }}
-            center={this.state.center}
-            zoom={[12]}
+          <MapGL
+            {...this.state.viewport}
+            width="100%"
+            height="100%"
+            mapStyle="mapbox://styles/mapbox/streets-v11?optimize=true"
+            onViewportChange={(viewport) => this.setState({ viewport })}
+            mapboxApiAccessToken={MAPBOX_TOKEN}
+            transitionDuration={200}
           >
             {this.state.flats.map((flat) => (
-              <Marker key={flat.id} coordinates={[flat.lng, flat.lat]}>
+              <Marker key={flat.id} latitude={flat.lat} longitude={flat.lng}>
                 <PriceMarker
                   price={flat.price}
                   selected={this.state.selectedFlat === flat}
                 />
               </Marker>
             ))}
-          </Map>
+          </MapGL>
         </div>
       </div>
     );
   }
 }
 
+// <Map center={this.state.center} flats={this.state.flats} />
+// {this.state.flats.map((flat) => (
+//   <Marker key={flat.id} coordinates={[flat.lng, flat.lat]}>
+//     <PriceMarker
+//       price={flat.price}
+//       selected={this.state.selectedFlat === flat}
+//     />
+//   </Marker>
+// ))}
 export default App;
