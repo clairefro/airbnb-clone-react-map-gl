@@ -92,13 +92,4 @@ class App extends React.Component {
   }
 }
 
-// <Map center={this.state.center} flats={this.state.flats} />
-// {this.state.flats.map((flat) => (
-//   <Marker key={flat.id} coordinates={[flat.lng, flat.lat]}>
-//     <PriceMarker
-//       price={flat.price}
-//       selected={this.state.selectedFlat === flat}
-//     />
-//   </Marker>
-// ))}
 export default App;
