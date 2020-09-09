@@ -56,6 +56,7 @@ class App extends React.Component {
         <div className="main">
           <input
             type="text"
+            placeholder="Search"
             value={this.state.search}
             onChange={this.handleSearch}
           />
